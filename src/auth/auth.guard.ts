@@ -42,7 +42,6 @@ export class AuthGuard implements CanActivate {
       // so that we can access it in our route handlers
       request['user'] = {
         ...payload,
-        roles: [...payload.roles],
       };
     } catch (e) {
       console.error('error on jwtService.verifyAsync token, with error:', e);
