@@ -1,4 +1,6 @@
 import { IsNotEmpty, IsOptional } from 'class-validator';
+import { Category } from 'src/category/entities/category.entity';
+
 export class CreateNoteDto {
   @IsNotEmpty()
   title: string;
@@ -8,4 +10,7 @@ export class CreateNoteDto {
 
   @IsOptional()
   isArchive?: boolean;
+
+  @IsNotEmpty()
+  category: Category;
 }

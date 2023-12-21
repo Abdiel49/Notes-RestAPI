@@ -19,12 +19,13 @@ export class NotesService {
   }
 
   findAll() {
-    return this.notesRepository.find();
+    return this.notesRepository.find({ relations: ['category'] });
   }
 
   async findOne(id: number) {
     const note = await this.notesRepository.findOne({
       where: { id },
+      relations: ['category'],
     });
 
     if (!note) {
@@ -37,6 +38,7 @@ export class NotesService {
   async update(id: number, updateNoteDto: UpdateNoteDto) {
     const note = await this.notesRepository.findOne({
       where: { id },
+      relations: ['category'],
     });
 
     if (!note) {

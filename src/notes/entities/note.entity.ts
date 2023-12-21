@@ -1,10 +1,13 @@
 import { Exclude } from 'class-transformer';
+import { Category } from 'src/category/entities/category.entity';
 
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,6 +25,10 @@ export class Note {
 
   @Column({ default: false })
   isArchive: boolean;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
 
   @CreateDateColumn({
     type: 'timestamp',
