@@ -7,10 +7,13 @@ import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import { CategoryModule } from './category/category.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './auth/auth.guard';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       url: process.env.DATABASE_URL || '',
@@ -30,6 +33,6 @@ import { UserModule } from './user/user.module';
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthGuard],
 })
 export class AppModule {}
