@@ -9,6 +9,7 @@ import { CategoryModule } from './category/category.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
+import { AccessLogModule } from './access-log/access-log.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { AuthGuard } from './auth/auth.guard';
     NotesModule,
     CategoryModule,
     UserModule,
+    AccessLogModule,
   ],
   controllers: [AppController],
   providers: [AppService, AuthGuard],
