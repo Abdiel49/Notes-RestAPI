@@ -34,11 +34,18 @@ export class AccessLogService {
   // findAll(limit = 5, offset = 1) { // dirty option
   findAll(limit: number, offset: number) {
     const skip = Math.abs(limit * offset - limit);
-    return this.accesslogRespository.find({ take: Math.abs(limit), skip });
+    return this.accesslogRespository.find({
+      take: Math.abs(limit),
+      skip,
+      relations: ['user'],
+    });
   }
 
   async findOne(id: string) {
-    const log = await this.accesslogRespository.findOne({ where: { id } });
+    const log = await this.accesslogRespository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
 
     if (!log) {
       throw new NotFoundException(`No AccessLog found with id: ${id}`);
